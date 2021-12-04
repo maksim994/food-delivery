@@ -1,24 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { createGlobalStyle } from 'styled-components';
+import { NavBar } from './Components/NavBar';
+const GlobalStyle = createGlobalStyle`
+  html{
+    box-sizing: border-box;
+  }
+
+  *,
+  *::after,
+  *::before{
+    box-sizing: inherit;
+  }
+
+  body{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+  }
+  img{
+    max-width: 100%;
+    height: auto
+  }
+  a{
+    text-decoration: none;
+    color: inherit
+  }
+  ul{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  h1, h2{
+    font-family: 'Montserrat', sans-serif;
+  }
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <GlobalStyle />
+      <NavBar />
+    </React.Fragment>
   );
 }
 
