@@ -43,7 +43,7 @@ p{
 }
 
 
-buttom{
+button{
   cursor: pointer;
 }
 
