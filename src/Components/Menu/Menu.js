@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import dbMenu from './DBMenu'
+import dbMenu from '../DBMenu'
 import { ListItem } from './ListItem';
+import { BannerSection } from './Banner';
 
 const MenuStyled = styled.main`
   background-color: #F7F7F7;
@@ -15,6 +16,8 @@ const SectionMenu = styled.section`
 `
 
 export const Menu = ( {setOpenItem}) => (
+  <React.Fragment>
+  <BannerSection />
   <MenuStyled>
     <SectionMenu>
       <h2>Бургеры</h2>
@@ -30,6 +33,6 @@ export const Menu = ( {setOpenItem}) => (
         setOpenItem={setOpenItem}
       />
     </SectionMenu>
-
   </MenuStyled>
+  </React.Fragment>
 )
