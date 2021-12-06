@@ -5,7 +5,7 @@ import { ListItem } from './ListItem';
 
 const MenuStyled = styled.main`
   background-color: #F7F7F7;
-
+  margin-left: 380px;
 `
 
 
