@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 import { ModalButton } from '../Style/ModalButton';
 import { OrderListItem } from './OrderListItem';
+import { totalPriceItems } from '../Functions/secondaryFunctions'
+import { toCurrencyString } from '../Functions/secondaryFunctions'
 
 
 const OrderStyled = styled.section`
@@ -25,10 +27,7 @@ const OrderContent = styled.div`
   flex-grow: 1;
 `;
 
-const OrderList = styled.ul`
-
-`;
-
+const OrderList = styled.ul``;
 
 const Total = styled.div`
   display: flex;
@@ -50,6 +49,9 @@ const EmptyList = styled.p`
 
 
 export const Order = ({ orders }) => {
+
+  const total = orders.reduce( (result, order) => totalPriceItems(order) + result, 0);
+
   return(
     <OrderStyled>
       <OrderTitle>Ваш заказ</OrderTitle>
@@ -65,7 +67,7 @@ export const Order = ({ orders }) => {
       <Total>
         <span>Итого</span>
         <span>5</span>
-        <TotalPrice>3850 р</TotalPrice>
+        <TotalPrice>{toCurrencyString(total)}</TotalPrice>
       </Total>
       <ModalButton>Оформить</ModalButton>
     </OrderStyled>
