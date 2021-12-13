@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { ModalButton } from '../Style/ModalButton';
 import { OrderListItem } from './OrderListItem';
 import { totalPriceItems } from '../Functions/secondaryFunctions'
-import { toCurrencyString } from '../Functions/secondaryFunctions'
+import { formatCurrency } from '../Functions/secondaryFunctions'
 
 
 const OrderStyled = styled.section`
@@ -40,6 +40,7 @@ const Total = styled.div`
 const TotalPrice = styled.span`
   text-align: right;
   min-width: 65px;
+  margin-left: 20px
 `;
 
 const EmptyList = styled.p`
@@ -51,6 +52,8 @@ const EmptyList = styled.p`
 export const Order = ({ orders }) => {
 
   const total = orders.reduce( (result, order) => totalPriceItems(order) + result, 0);
+  const totalCouner = orders.reduce( (result, order) => 
+      order.count + result, 0);
 
   return(
     <OrderStyled>
@@ -66,8 +69,8 @@ export const Order = ({ orders }) => {
       </OrderContent>
       <Total>
         <span>Итого</span>
-        <span>5</span>
-        <TotalPrice>{toCurrencyString(total)}</TotalPrice>
+        <span>{totalCouner}</span>
+        <TotalPrice>{formatCurrency(total)}</TotalPrice>
       </Total>
       <ModalButton>Оформить</ModalButton>
     </OrderStyled>

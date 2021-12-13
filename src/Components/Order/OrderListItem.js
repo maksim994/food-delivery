@@ -2,12 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { totalPriceItems } from '../Functions/secondaryFunctions'
-import { toCurrencyString } from '../Functions/secondaryFunctions'
+import { formatCurrency } from '../Functions/secondaryFunctions'
 
 import trashImage from '../../images/trash.svg';
 
 const OrderItemStyles = styled.li`
   display: flex;
+  flex-wrap: wrap;
   margin: 15px 0px;
   align-items: center;
 `;
@@ -35,11 +36,26 @@ const TrashButton = styled.button`
   cursor: pointer;
 `;
 
-export const OrderListItem  = ({ order }) => (
-  <OrderItemStyles>
+const Toppings = styled.div`
+  color: #9A9A9A;
+  width: 100%
+`;
+
+
+export const OrderListItem  = ({ order }) => {
+
+  const topping = order.topping.filter(item=> item.checked)
+    .map(item => item.name)
+    .join(', '); 
+
+
+  return (
+    <OrderItemStyles>
     <ItemName>{order.name}</ItemName>
     <span>{order.count}</span>
-    <ItemPrice>{toCurrencyString(totalPriceItems(order))}</ItemPrice>
+    <ItemPrice>{formatCurrency(totalPriceItems(order))}</ItemPrice>
     <TrashButton />
+    {topping && <Toppings>Допы: {topping}</Toppings>}
   </OrderItemStyles>
-)
+  )
+}

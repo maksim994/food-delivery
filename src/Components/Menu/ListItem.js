@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { toCurrencyString } from '../Functions/secondaryFunctions'
+import { formatCurrency } from '../Functions/secondaryFunctions'
 
 
 
@@ -52,7 +52,7 @@ export const ListItem = ({ itemList, setOpenItem }) => (
         onClick={ () => setOpenItem(item) }
       >
        <p>{item.name}</p>
-       <p>{toCurrencyString(item.price)}</p>
+       <p>{formatCurrency(item.price)}</p>
       </Item>
     ))}
   </List>

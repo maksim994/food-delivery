@@ -1,6 +1,10 @@
 
-export const totalPriceItems = order => order.price * order.count;
+export const totalPriceItems = order => {
 
-export const toCurrencyString = (total) => {
-  return total.toLocaleString('ru-RU', {style: 'currency', currency: 'RUB'});
+  const countTopping = order.topping && order.topping.filter(item => item.checked).length;
+  const priceTopping = (order.price * 0.1) * countTopping;
+  return order.price * order.count + priceTopping;
+
 };
+
+export const formatCurrency = total => total.toLocaleString('ru-RU', {style: 'currency', currency: 'RUB'});
