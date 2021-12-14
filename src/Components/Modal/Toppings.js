@@ -27,7 +27,7 @@ export function Toppings( {toppings, checkToppings} ){
       <ToppingsWrapp>
 
         {toppings.map((item, i) => (
-          <ToppingsLabel kye={i}>
+          <ToppingsLabel key={i}>
             <ToppingsCheckbox 
               type="checkbox" 
               checked={item.checked}

@@ -2,12 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 import { ModalButton } from '../Style/ModalButton';
 import { CountItem } from './CountItem';
+
 import { useCount } from '../Hooks/useCount';
+import { useToppings } from '../Hooks/useToppings';
+import { useChoices } from '../Hooks/useChoices';
 
 import { totalPriceItems } from '../Functions/secondaryFunctions'
 import { formatCurrency } from '../Functions/secondaryFunctions'
+
 import { Toppings } from './Toppings';
-import { useToppings } from '../Hooks/useToppings';
+import { Choices } from './Choices';
 
 
 const Overlay = styled.div`
@@ -62,6 +66,7 @@ export const ModalItem = ({openItem, setOpenItem, orders, setOrders}) => {
   
   const counter = useCount();
   const toppings = useToppings(openItem);
+  const choices = useChoices(openItem);
 
   const closeModal = e => {
     if(e.target.id === 'overlay'){
@@ -72,7 +77,8 @@ export const ModalItem = ({openItem, setOpenItem, orders, setOrders}) => {
   const order = {
     ...openItem,
     count: counter.count,
-    topping: toppings.toppings
+    topping: toppings.toppings,
+    choice: choices.choice,
   };
 
   const addToOrder = () => {
@@ -93,6 +99,7 @@ export const ModalItem = ({openItem, setOpenItem, orders, setOrders}) => {
           <CountItem {...counter} />
 
           {openItem.toppings && <Toppings {...toppings}/>}
+          {openItem.choices && <Choices {...choices} openItem={openItem}/>}
 
           <TotalPriceItem>
             <span>Цена:</span>
@@ -100,7 +107,10 @@ export const ModalItem = ({openItem, setOpenItem, orders, setOrders}) => {
           </TotalPriceItem>
 
           
-          <ModalButton onClick={addToOrder}>Добавить</ModalButton>
+          <ModalButton 
+            onClick={addToOrder}
+            disabled={order.choices && !order.choice}
+          >Добавить</ModalButton>
         </ModalContent>
       </Modal>
     </Overlay>

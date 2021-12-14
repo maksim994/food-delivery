@@ -29,7 +29,7 @@ const CountWrapperInput = styled.div`
 export const CountItem = ({ count, setCount, onChange }) => {
   return(
     <CountWrapper>
-      <spann>Количество</spann>
+      <span>Количество</span>
       <CountWrapperInput>
         <ButtonCount disabled={count <= 1} onClick={() => setCount(count - 1) }>-</ButtonCount>
         <CountInput type='number' min='1' max='100' value={count < 1 ? 1 : count} onChange={onChange}/>
