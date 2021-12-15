@@ -49,17 +49,45 @@ const BtnSign = styled.button`
 const ImgSign = styled.img`
   margin-bottom: 3px;
 `
+ 
+const User = styled.div`
+  display: flex;
+  align-items: center;
+  text-align: center;
+`
+
+const LogOut = styled.span`
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+`
+
+const Figure = styled.figure`
+  margin: 0px 30px
+`
 
 
-export const NavBar = () => (
+export const NavBar = ({authentication, logIn, logOut}) => (
   <NavBarStyled>
     <Logo>
       <ImgLogo src={logoImg} alt="logo" />
       <H1>FOOD DELIVERY</H1>
     </Logo>
-    <BtnSign>
-      <ImgSign src={signImg} alt="Войти" />
-      Войти
-    </BtnSign>
+    {authentication ? 
+      <User>
+          <Figure>
+            <ImgSign src={signImg} alt="Войти" alt={authentication.displayName} />
+            <figcaption>{authentication.displayName}</figcaption>
+          </Figure>
+          <LogOut title="Выйти" onClick={logOut}>X</LogOut>
+      </User>
+      :
+      <BtnSign onClick={logIn}>
+        <Figure>
+            <ImgSign src={signImg} alt="Войти" />
+            <figcaption>Войти</figcaption>
+          </Figure>
+      </BtnSign>
+    }
   </NavBarStyled>
 )
