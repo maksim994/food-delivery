@@ -13,13 +13,13 @@ const List = styled.ul`
 
 const Item = styled.li`
   position: relative;
-  width: 400px;
+  width: 33%;
   height: 155px;
   background-image: ${( {img}) => `url(${img})`};
   background-position: center;
   background-size: cover;
   margin-top: 30px;
-  margin-right: 30px;
+  // margin-right: 30px;
   padding: 15px;
   color: #FFF;
   z-index: 1;

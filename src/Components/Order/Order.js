@@ -14,7 +14,7 @@ const OrderStyled = styled.section`
   top: 80px;
   left: 0px;
   background-color: #fff;
-  min-width: 380px;
+  width: 380px;
   height: calc(100% - 80px);
   box-shadow: 3px 4px 5px rgba(0, 0, 0, .25);
   padding: 20px
@@ -49,7 +49,7 @@ const EmptyList = styled.p`
 `;
 
 
-export const Order = ({ orders, setOrders }) => {
+export const Order = ({ orders, setOrders, setOpenItem }) => {
 
   const deleteItem = index => {
     const newOrders = [...orders];
@@ -57,8 +57,8 @@ export const Order = ({ orders, setOrders }) => {
     setOrders(newOrders);
   }
 
-
-  const total = orders.reduce( (result, order) => totalPriceItems(order) + result, 0);
+  const total = orders.reduce( (result, order) => 
+      totalPriceItems(order) + result, 0);
   const totalCouner = orders.reduce( (result, order) => 
       order.count + result, 0);
 
@@ -74,6 +74,7 @@ export const Order = ({ orders, setOrders }) => {
               order={order} 
               deleteItem={deleteItem}
               index={index}
+              setOpenItem={setOpenItem}
             />)}
           </OrderList> : 
           <EmptyList>Список заказа пуст</EmptyList>
