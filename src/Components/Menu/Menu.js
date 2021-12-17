@@ -12,24 +12,23 @@ const SectionMenu = styled.section`
   padding: 30px;
 
 `
-
 const Loading = styled.div`
-background-color: #289b00;
-color: #FFF;
-text-align: center;
-position: absolute;
-top: 0px;
-left: 0px;
-width: 100%;
-height: 100%;
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 50px;
+  background-color: #289b00;
+  color: #FFF;
+  text-align: center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
 `
 
 
-export const Menu = ( {setOpenItem}) => {
+export const Menu = () => {
 
   const { data } = useFetch('DB.json');
   const dbMenu = data;
@@ -45,7 +44,6 @@ export const Menu = ( {setOpenItem}) => {
           <h2>Бургеры</h2>
           <ListItem 
             itemList={dbMenu.burger}
-            setOpenItem={setOpenItem}
           />
         </SectionMenu>
 
@@ -53,7 +51,6 @@ export const Menu = ( {setOpenItem}) => {
           <h2>Закуски / Напитки</h2>
           <ListItem 
             itemList={dbMenu.other}
-            setOpenItem={setOpenItem}
           />
         </SectionMenu>
         </> :
