@@ -49,7 +49,10 @@ const BtnSign = styled.button`
 const ImgSign = styled.img`
   margin-bottom: 3px;
 `
- 
+const ImgLogOut = styled.img`
+margin-bottom: 3px;
+`
+
 const User = styled.div`
   display: flex;
   align-items: center;
@@ -76,7 +79,7 @@ export const NavBar = ({authentication, logIn, logOut}) => (
     {authentication ? 
       <User>
           <Figure>
-            <ImgSign src={signImg} alt="Войти" alt={authentication.displayName} />
+            <ImgLogOut src={signImg} alt="Выйти" alt={authentication.displayName} />
             <figcaption>{authentication.displayName}</figcaption>
           </Figure>
           <LogOut title="Выйти" onClick={logOut}>X</LogOut>
